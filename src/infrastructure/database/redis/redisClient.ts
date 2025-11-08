@@ -1,5 +1,5 @@
 import Redis from 'ioredis';
-import { appConfig } from '../../../config/readers/appConfig';
+import { appConfig } from '../../../config/readers/appConfig.js';
 
 class RedisClient {
     private client: Redis;

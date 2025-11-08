@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import {config} from "dotenv"
-import { envSchema } from '../schema/envParser';
+import { envSchema } from '../schema/envParser.js';
 
 // Load environment file based on NODE_ENV (only for development/local)
 if (process.env.NODE_ENV !== 'production') {
