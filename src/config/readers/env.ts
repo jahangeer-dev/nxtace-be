@@ -1,7 +1,11 @@
 import { z } from 'zod';
 import {config} from "dotenv"
 import { envSchema } from '../schema/envParser';
-config({ path:  `.env.${process.env.NODE_ENV}` })
+
+// Load environment file based on NODE_ENV (only for development/local)
+if (process.env.NODE_ENV !== 'production') {
+    config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
+}
 
 export class EnvValidator {
     private static instance: EnvValidator;
