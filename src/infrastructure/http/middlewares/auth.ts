@@ -18,7 +18,6 @@ export const authenticateJWT = async (req: Request, res: Response, next: NextFun
       throw new UnauthorizedError('Invalid or expired access token');
     }
 
-    // Get user from database
     const user = await userRepository.findById(payload.userId);
     if (!user) {
       throw new AuthFailureError('User not found');
@@ -34,7 +33,6 @@ export const authenticateJWT = async (req: Request, res: Response, next: NextFun
   }
 };
 
-// Optional authentication - doesn't fail if no token
 export const optionalAuth = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const authHeader = req.headers.authorization;
@@ -55,7 +53,6 @@ export const optionalAuth = async (req: Request, res: Response, next: NextFuncti
 
     next();
   } catch (error) {
-    // Silent fail for optional auth
     next();
   }
 };

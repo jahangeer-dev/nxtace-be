@@ -8,13 +8,11 @@ import type { IUser } from '@/domain/entities/User.js';
 
 export class LoginUseCase {
   async execute(command: LoginCommand): Promise<AuthResponseDTO> {
-    // Find user by email
     const user = await userRepository.findByEmail(command.email);
     if (!user) {
       throw new AuthFailureError('Invalid email or password');
     }
 
-    // Check if user has password
     if (!user.password) {
       throw new AuthFailureError('Invalid account type');
     }
